@@ -41,17 +41,25 @@ export default async function ServiceDetailPage({ params }) {
         <img
           src={service.image}
           alt={service.name}
-          className="rounded w-full h-64 object-cover"
+          className="rounded w-full h-64 object-cover shadow-sm"
         />
         <div>
-          <h1 className="text-2xl font-bold mb-2">{service.name}</h1>
-          <p className="text-gray-700 mb-3">{service.description}</p>
-          <p className="font-semibold mb-3">
-            ৳ {service.pricePerHour} / hour
+          <h1 className="text-2xl font-bold mb-2 text-emerald-900">
+            {service.name}
+          </h1>
+          <p className="text-sm uppercase tracking-[0.16em] text-emerald-700/80 mb-2">
+            Care Service
+          </p>
+          <p className="text-emerald-800 mb-3 leading-relaxed">
+            {service.description}
+          </p>
+          <p className="font-semibold mb-4 text-emerald-900">
+            ৳ {service.pricePerHour}{' '}
+            <span className="text-sm text-emerald-700">per hour</span>
           </p>
           <Link
             href={`/booking/${service.id}`}
-            className="inline-block bg-blue-600 text-white px-5 py-2 rounded"
+            className="inline-flex items-center justify-center bg-gradient-to-r from-lime-500 via-lime-600 to-emerald-700 text-emerald-950 font-semibold px-6 py-2.5 rounded-full shadow-sm hover:from-lime-600 hover:via-lime-700 hover:to-emerald-800 hover:text-lime-50 transition-all"
           >
             Book Service
           </Link>

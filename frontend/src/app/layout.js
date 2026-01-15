@@ -4,13 +4,14 @@ import Footer from '@/components/Footer';
 
 export const metadata = {
   title: 'Care.IO - Baby Sitting & Elderly Care Service Platform',
-  description: 'Book trusted baby sitting, elderly care, and sick care services.',
+  description:
+    'Book trusted baby sitting, elderly care, and sick care services.',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col bg-lime-50">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

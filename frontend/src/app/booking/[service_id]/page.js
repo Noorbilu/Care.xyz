@@ -21,25 +21,31 @@ export default function BookingPage() {
   const [totalCost, setTotalCost] = useState(0);
   const [message, setMessage] = useState('');
 
+  // Protect route
   useEffect(() => {
     if (!isAuthenticated()) {
       router.replace(`/login?redirect=/booking/${params.service_id}`);
-      return;
     }
   }, [params.service_id, router]);
 
+  // Load service details
   useEffect(() => {
     async function loadService() {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/items/${params.service_id}`
-      );
-      const data = await res.json();
-      setService(data);
-      setTotalCost(data.pricePerHour * durationHours);
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/items/${params.service_id}`
+        );
+        const data = await res.json();
+        setService(data);
+        setTotalCost(data.pricePerHour * durationHours);
+      } catch (err) {
+        console.error('Error loading service', err);
+      }
     }
     loadService();
   }, [params.service_id]);
 
+  // Update total cost when duration changes
   useEffect(() => {
     if (service) {
       setTotalCost(service.pricePerHour * durationHours);
@@ -47,7 +53,7 @@ export default function BookingPage() {
   }, [durationHours, service]);
 
   const handleChange = (field, value) => {
-    setLocation(prev => ({ ...prev, [field]: value }));
+    setLocation((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -59,7 +65,7 @@ export default function BookingPage() {
     }
     try {
       await api.post('/bookings', {
-        userId: user.email,           // treat email as userId
+        userId: user.email, // treat email as userId
         serviceId: params.service_id,
         durationHours,
         division: location.division,
@@ -70,8 +76,7 @@ export default function BookingPage() {
         totalCost,
       });
       setMessage('Booking created successfully with status Pending.');
-      // Optional redirect:
-      // router.push('/my-bookings');
+      // router.push('/my-bookings'); // optional redirect
     } catch (err) {
       console.error(err);
       setMessage('Failed to create booking.');
@@ -98,7 +103,7 @@ export default function BookingPage() {
             type="number"
             min={1}
             value={durationHours}
-            onChange={e =>
+            onChange={(e) =>
               setDurationHours(parseInt(e.target.value, 10) || 1)
             }
             className="border px-3 py-2 rounded w-full"
@@ -111,7 +116,7 @@ export default function BookingPage() {
             <label className="block text-sm font-semibold mb-1">Division</label>
             <input
               className="border px-3 py-2 rounded w-full"
-              onChange={e => handleChange('division', e.target.value)}
+              onChange={(e) => handleChange('division', e.target.value)}
               required
             />
           </div>
@@ -119,7 +124,7 @@ export default function BookingPage() {
             <label className="block text-sm font-semibold mb-1">District</label>
             <input
               className="border px-3 py-2 rounded w-full"
-              onChange={e => handleChange('district', e.target.value)}
+              onChange={(e) => handleChange('district', e.target.value)}
               required
             />
           </div>
@@ -127,7 +132,7 @@ export default function BookingPage() {
             <label className="block text-sm font-semibold mb-1">City</label>
             <input
               className="border px-3 py-2 rounded w-full"
-              onChange={e => handleChange('city', e.target.value)}
+              onChange={(e) => handleChange('city', e.target.value)}
               required
             />
           </div>
@@ -135,7 +140,7 @@ export default function BookingPage() {
             <label className="block text-sm font-semibold mb-1">Area</label>
             <input
               className="border px-3 py-2 rounded w-full"
-              onChange={e => handleChange('area', e.target.value)}
+              onChange={(e) => handleChange('area', e.target.value)}
               required
             />
           </div>
@@ -145,14 +150,12 @@ export default function BookingPage() {
           <label className="block text-sm font-semibold mb-1">Address</label>
           <textarea
             className="border px-3 py-2 rounded w-full"
-            onChange={e => handleChange('address', e.target.value)}
+            onChange={(e) => handleChange('address', e.target.value)}
             required
           />
         </div>
 
-        <div className="font-semibold">
-          Total Cost: ৳ {totalCost}
-        </div>
+        <div className="font-semibold">Total Cost: ৳ {totalCost}</div>
 
         <button className="bg-blue-600 text-white px-5 py-2 rounded">
           Confirm Booking

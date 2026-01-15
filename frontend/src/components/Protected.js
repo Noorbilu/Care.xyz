@@ -18,5 +18,16 @@ export default function Protected({ children }) {
   }, [router]);
 
   if (!allowed) return null;
-  return <>{children}</>;
+
+  return (
+    <div className="
+      min-h-screen
+      bg-lime-950
+      text-lime-100
+      selection:bg-lime-700
+      selection:text-lime-100
+    ">
+      {children}
+    </div>
+  );
 }
