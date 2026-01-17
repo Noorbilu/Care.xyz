@@ -2,6 +2,8 @@ Care.IO – Baby Sitting & Elderly Care Service Platform
 
 Care.IO is a web application that helps users book reliable and trusted care services for babies, elderly people, and sick or special‑needs family members. Users can browse services, view details, calculate total cost, and create bookings with location details and duration.
 
+Live Frontend: https://care-j8l58wq0p-afsanas-projects-b742d697.vercel.app
+Backend API (items): https://care-xyz-backend.onrender.com/api/items
 
 Frontend: Next.js
 Backend: Express.js
