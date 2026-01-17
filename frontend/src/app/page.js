@@ -16,14 +16,14 @@ export default function HomePage() {
       name: 'Baby Sitting Service',
       description: 'Verified babysitters for infants and children.',
       pricePerHour: 300,
-      image: 'https://placehold.co/600x400?text=Baby+Care',
+      image: 'https://i.ibb.co/x8L5QRfX/download-53.jpg',
     },
     {
       id: 'elderly-care',
       name: 'Elderly Care Service',
       description: 'Compassionate care and support for seniors.',
       pricePerHour: 350,
-      image: 'https://placehold.co/600x400?text=Elderly+Care',
+      image: 'https://i.ibb.co/v4FMcJyv/download-54.jpg',
     },
     {
       id: 'sick-care',
@@ -31,13 +31,13 @@ export default function HomePage() {
       description:
         'Specialized care for sick or recovering family members.',
       pricePerHour: 400,
-      image: 'https://placehold.co/600x400?text=Sick+Care',
+      image: 'https://i.ibb.co/MHTDGJ8/download-55.jpg',
     },
   ];
 
   return (
     <div>
-      {/* 1. Hero/Banner */}
+      
       <section className="bg-gradient-to-r from-lime-50 via-lime-100 to-lime-200 py-10 flex justify-between">
         <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
           <div>
@@ -49,7 +49,7 @@ export default function HomePage() {
               and special care professionals in your area.
             </p>
 
-            {/* BUTTON COLOR UPDATED */}
+            
             <Link
               href="/items"
               className="bg-gradient-to-r from-lime-800 via-lime-900 to-lime-950
@@ -65,13 +65,15 @@ export default function HomePage() {
             <Image
               src={pic}
               alt="Family care illustration"
+              width={400}         
+              height={250}
               className="rounded-5xl shadow-md h-80 w-85"
             />
           </div>
         </div>
       </section>
 
-      {/* 2. About */}
+      
       <section className="py-12">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-2xl font-bold mb-4 text-lime-900">
@@ -90,7 +92,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. Services Overview */}
+     
       <section className="py-12 bg-lime-50">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-2xl font-bold mb-6 text-lime-900">
@@ -104,7 +106,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. How it works */}
+     
       <section className="py-12">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-2xl font-bold mb-6 text-lime-900">
@@ -119,7 +121,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. Testimonials */}
       <section className="py-12 bg-lime-50">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-2xl font-bold mb-6 text-lime-900">
@@ -154,7 +155,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. Success Metrics */}
+   
       <section className="py-12">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-2xl font-bold mb-6 text-lime-900">
@@ -177,7 +178,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. FAQ + CTA */}
+      
       <section className="py-12 bg-gradient-to-r from-lime-50 via-lime-100 to-lime-200">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-2xl font-bold mb-4 text-lime-900">FAQ</h2>
@@ -199,7 +200,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* BUTTON COLOR UPDATED */}
           <Link
             href="/items"
             className="inline-block bg-gradient-to-r from-lime-800 via-lime-900 to-lime-950

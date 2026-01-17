@@ -21,14 +21,13 @@ export default function BookingPage() {
   const [totalCost, setTotalCost] = useState(0);
   const [message, setMessage] = useState('');
 
-  // Protect route
   useEffect(() => {
     if (!isAuthenticated()) {
       router.replace(`/login?redirect=/booking/${params.service_id}`);
     }
   }, [params.service_id, router]);
 
-  // Load service details
+
   useEffect(() => {
     async function loadService() {
       try {
@@ -45,7 +44,7 @@ export default function BookingPage() {
     loadService();
   }, [params.service_id]);
 
-  // Update total cost when duration changes
+ 
   useEffect(() => {
     if (service) {
       setTotalCost(service.pricePerHour * durationHours);
@@ -65,7 +64,7 @@ export default function BookingPage() {
     }
     try {
       await api.post('/bookings', {
-        userId: user.email, // treat email as userId
+        userId: user.email,
         serviceId: params.service_id,
         durationHours,
         division: location.division,
@@ -76,7 +75,6 @@ export default function BookingPage() {
         totalCost,
       });
       setMessage('Booking created successfully with status Pending.');
-      // router.push('/my-bookings'); // optional redirect
     } catch (err) {
       console.error(err);
       setMessage('Failed to create booking.');
@@ -84,19 +82,31 @@ export default function BookingPage() {
   };
 
   if (!service) {
-    return <div className="max-w-4xl mx-auto p-6">Loading...</div>;
+    return (
+      <div className="max-w-4xl mx-auto p-6 text-center text-emerald-800">
+        Loading service details...
+      </div>
+    );
   }
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-4">Book: {service.name}</h1>
+      <h1 className="text-2xl font-bold mb-4 text-emerald-900">
+        Book: {service.name}
+      </h1>
+
+      {message && (
+        <p className="mb-3 text-sm rounded-md px-3 py-2 border border-lime-400 bg-lime-50 text-emerald-900">
+          {message}
+        </p>
+      )}
 
       <form
         onSubmit={handleSubmit}
-        className="space-y-4 border p-4 rounded bg-white"
+        className="space-y-4 border border-emerald-200 p-6 rounded-xl bg-white shadow-sm"
       >
         <div>
-          <label className="block text-sm font-semibold mb-1">
+          <label className="block text-sm font-semibold text-emerald-800 mb-1">
             Duration (hours)
           </label>
           <input
@@ -106,62 +116,53 @@ export default function BookingPage() {
             onChange={(e) =>
               setDurationHours(parseInt(e.target.value, 10) || 1)
             }
-            className="border px-3 py-2 rounded w-full"
+            className="border border-emerald-200 px-3 py-2 rounded w-full text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500"
           />
         </div>
 
-        {/* Location: Division, District, City, Area, Address */}
         <div className="grid md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-semibold mb-1">Division</label>
-            <input
-              className="border px-3 py-2 rounded w-full"
-              onChange={(e) => handleChange('division', e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-semibold mb-1">District</label>
-            <input
-              className="border px-3 py-2 rounded w-full"
-              onChange={(e) => handleChange('district', e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-semibold mb-1">City</label>
-            <input
-              className="border px-3 py-2 rounded w-full"
-              onChange={(e) => handleChange('city', e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-semibold mb-1">Area</label>
-            <input
-              className="border px-3 py-2 rounded w-full"
-              onChange={(e) => handleChange('area', e.target.value)}
-              required
-            />
-          </div>
+          {['division', 'district', 'city', 'area'].map((field) => (
+            <div key={field}>
+              <label className="block text-sm font-semibold text-emerald-800 mb-1 capitalize">
+                {field}
+              </label>
+              <input
+                value={location[field]}
+                onChange={(e) => handleChange(field, e.target.value)}
+                required
+                className="border border-emerald-200 px-3 py-2 rounded w-full text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500"
+              />
+            </div>
+          ))}
         </div>
 
         <div>
-          <label className="block text-sm font-semibold mb-1">Address</label>
+          <label className="block text-sm font-semibold text-emerald-800 mb-1">
+            Address
+          </label>
           <textarea
-            className="border px-3 py-2 rounded w-full"
+            value={location.address}
             onChange={(e) => handleChange('address', e.target.value)}
             required
+            rows={3}
+            className="border border-emerald-200 px-3 py-2 rounded w-full text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500"
           />
         </div>
 
-        <div className="font-semibold">Total Cost: ৳ {totalCost}</div>
+        <div className="font-semibold text-emerald-900">
+          Total Cost: ৳ {totalCost}
+        </div>
 
-        <button className="bg-blue-600 text-white px-5 py-2 rounded">
+        <button
+          type="submit"
+          className="mt-2 inline-flex items-center justify-center w-full rounded-full
+                     bg-gradient-to-r from-lime-500 via-lime-600 to-emerald-700
+                     text-emerald-950 font-semibold text-sm py-2.5
+                     hover:from-lime-600 hover:via-lime-700 hover:to-emerald-800
+                     hover:text-lime-50 shadow-sm hover:shadow-md transition-all"
+        >
           Confirm Booking
         </button>
-
-        {message && <p className="mt-3 text-sm">{message}</p>}
       </form>
     </div>
   );

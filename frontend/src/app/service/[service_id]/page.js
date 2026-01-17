@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 async function getService(id) {
@@ -38,9 +39,11 @@ export default async function ServiceDetailPage({ params }) {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="grid md:grid-cols-2 gap-6">
-        <img
+        <Image
           src={service.image}
           alt={service.name}
+          width={400}        
+          height={250}
           className="rounded w-full h-64 object-cover shadow-sm"
         />
         <div>

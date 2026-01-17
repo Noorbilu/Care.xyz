@@ -15,7 +15,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-emerald-900/20 bg-gradient-to-r from-lime-200 via-lime-100 to-lime-50/60 backdrop-blur">
       <nav className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-        {/* Logo + Brand */}
+      
         <Link href="/" className="flex items-center gap-2 group">
           <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-lime-400 via-lime-700 to-lime-950 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
             <span className="text-white font-extrabold text-lg">C</span>
@@ -30,7 +30,7 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop Nav */}
+      
         <div className="hidden md:flex items-center gap-6">
           <Link
             href="/"
@@ -78,7 +78,7 @@ export default function Navbar() {
             Contact
           </Link>
 
-          {/* Right side: user / auth */}
+         
           <div className="flex items-center gap-3">
             {user && (
               <span className="hidden lg:inline max-w-[160px] truncate text-xs px-2 py-1 rounded-full bg-lime-100 text-emerald-900 font-medium">
@@ -107,7 +107,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile burger */}
+        
         <button
           className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-emerald-900 hover:bg-lime-100"
           onClick={() => setMenuOpen((o) => !o)}
@@ -137,7 +137,7 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile menu */}
+    
       {menuOpen && (
         <div className="md:hidden border-t border-emerald-900/10 bg-lime-50/95 backdrop-blur">
           <div className="max-w-6xl mx-auto px-4 py-3 space-y-2">

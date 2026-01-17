@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 async function getItems() {
@@ -31,9 +32,11 @@ export default async function ItemsPage() {
             key={item.id}
             className="border border-lime-300 rounded-xl p-4 bg-white flex flex-col shadow-sm hover:shadow-md transition-shadow"
           >
-            <img
+            <Image
               src={item.image}
               alt={item.name}
+              height={420}
+              width={300}
               className="w-full h-40 object-cover rounded-lg mb-3"
             />
             <h2 className="font-semibold text-lg mb-1 text-emerald-950">

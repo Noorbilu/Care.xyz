@@ -10,7 +10,7 @@ export default function Footer() {
     ">
       <div className="max-w-6xl mx-auto px-4 py-12 grid gap-8 md:grid-cols-4">
 
-        {/* Brand */}
+    
         <div className="md:col-span-2">
           <div className="flex items-center gap-3 mb-4">
             <div className="
@@ -37,19 +37,19 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Links */}
+      
         <div>
           <h3 className="text-sm font-semibold uppercase mb-3 text-[#E6F4D7]">
             Quick Links
           </h3>
           <ul className="space-y-2 text-sm text-[#B7C6A3]">
-            <li><a href="/items" className="hover:text-[#9FD36A]">Browse Services</a></li>
+            <li><a href="/items" className="hover:text-[#9FD36A">Browse Services</a></li>
             <li><a href="/my-bookings" className="hover:text-[#9FD36A]">My Bookings</a></li>
             <li><a href="/login" className="hover:text-[#9FD36A]">Login / Register</a></li>
           </ul>
         </div>
 
-        {/* Support */}
+        
         <div>
           <h3 className="text-sm font-semibold uppercase mb-3 text-[#E6F4D7]">
             Support
@@ -64,7 +64,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom */}
+      
       <div className="border-t border-[#1E2A19] bg-[#182517]">
         <div className="max-w-6xl mx-auto px-4 py-4 text-center text-xs text-[#8E9C7C]">
           © {year} Care.IO — Making caregiving simple & secure.

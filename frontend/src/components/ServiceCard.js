@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function ServiceCard({ service }) {
@@ -15,9 +16,11 @@ export default function ServiceCard({ service }) {
       hover:shadow-lg
       transition
     ">
-      <img
+      <Image
         src={service.image}
         alt={service.name}
+        width={400}         
+        height={250}
         className="
           w-full h-40 object-cover
           rounded-lg mb-3

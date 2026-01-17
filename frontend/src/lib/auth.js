@@ -4,7 +4,6 @@ import Cookies from 'js-cookie';
 
 const AUTH_COOKIE = 'careio_auth';
 
-// Hardcoded credentials
 const HARDCODED_EMAIL = 'user@care.io';
 const HARDCODED_PASSWORD = 'Care123';
 

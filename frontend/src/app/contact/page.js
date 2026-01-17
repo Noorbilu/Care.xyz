@@ -17,7 +17,7 @@ export default function ContactPage() {
       </p>
 
       <div className="grid md:grid-cols-2 gap-8">
-        {/* Contact info */}
+        
         <div className="space-y-4 text-sm text-olive-900">
           <div>
             <h2 className="font-semibold text-olive-950 mb-1">
@@ -47,7 +47,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Contact form (frontend-only) */}
+    
         <div className="rounded-xl border border-olive-200 bg-white p-5 shadow-sm">
           <h2 className="font-semibold text-olive-950 mb-3">
             Send us a message

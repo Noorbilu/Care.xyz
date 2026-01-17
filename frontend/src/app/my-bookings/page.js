@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { getUserFromCookie, isAuthenticated } from '@/lib/auth';
 import { api } from '@/lib/api';
 
@@ -30,6 +31,15 @@ export default function MyBookingsPage() {
     load();
   }, [router]);
 
+  
+  const handleCancel = (id) => {
+    setBookings((prev) =>
+      prev.map((bk) =>
+        bk.id === id ? { ...bk, status: 'Cancelled' } : bk
+      )
+    );
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-2 text-emerald-950">
@@ -43,12 +53,12 @@ export default function MyBookingsPage() {
       {bookings.length === 0 && (
         <p className="text-sm text-emerald-800">
           No bookings yet. Visit the{' '}
-          <a
+          <Link
             href="/items"
             className="font-semibold text-emerald-900 underline underline-offset-2"
           >
             Services
-          </a>{' '}
+          </Link>{' '}
           page to book your first caregiver.
         </p>
       )}
@@ -100,10 +110,16 @@ export default function MyBookingsPage() {
             </div>
 
             <div className="space-x-2">
-              <button className="px-3 py-1 border border-emerald-200 rounded-full text-xs font-medium text-emerald-900 hover:bg-lime-50 transition-colors">
+              <Link
+                href={`/items/${b.serviceId}`}
+                className="px-3 py-1 border border-emerald-200 rounded-full text-xs font-medium text-emerald-900 hover:bg-lime-50 transition-colors inline-flex items-center justify-center"
+              >
                 View Details
-              </button>
-              <button className="px-3 py-1 border border-red-200 rounded-full text-xs font-medium text-red-600 hover:bg-red-50 transition-colors">
+              </Link>
+              <button
+                onClick={() => handleCancel(b.id)}
+                className="px-3 py-1 border border-red-200 rounded-full text-xs font-medium text-red-600 hover:bg-red-50 transition-colors"
+              >
                 Cancel Booking
               </button>
             </div>

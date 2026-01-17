@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Care.IO – Baby Sitting & Elderly Care Service Platform
 
-## Getting Started
+Care.IO is a web application that helps users book reliable and trusted care services for babies, elderly people, and sick or special‑needs family members. Users can browse services, view details, calculate total cost, and create bookings with location details and duration.
 
-First, run the development server:
+UI / UX & Styling
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+ Fully responsive (mobile / tablet / desktop)
+ Theme: lime / dark‑lime / green using Tailwind CSS
+ Custom Navbar & Footer with multiple navigation paths
+ Custom 404 page with “Return Home” button
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Frontend
+   Next.js 16 (App Router)
+   React
+   Tailwind CSS
+   react-hot-toast
+   js-cookie
+Backend
+  Node.js
+  Express.js
+  Nodemailer
+Auth
+  Mock login with hardcoded credentials + cookies
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Project Structure:
+care-xyz/
+  backend/
+    index.js            
+    package.json
+    .env               
+  frontend/
+    src/
+      app/
+        page.js                 
+        items/
+          page.js              
+          id/page.js          
+          add/page.js           
+        service/
+          service_id/page.js  
+        booking/
+          service_id/page.js  
+        my-bookings/page.js     
+        login/page.js           
+        register/page.js        
+        about/page.js           
+        contact/page.js         
+        not-found.js           
+      components/
+        Navbar.js
+        Footer.js
+        ServiceCard.js
+      lib/
+        api.js                 
+        auth.js                 
+    .env.local                 
+    next.config.mjs
+    tailwind.config  

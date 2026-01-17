@@ -23,7 +23,7 @@ export default function RegisterPage() {
   const [success, setSuccess] = useState('');
 
   function validatePassword(pw) {
-    // 6+ chars, at least 1 uppercase, 1 lowercase
+   
     if (pw.length < 6) return 'Password must be at least 6 characters.';
     if (!/[A-Z]/.test(pw))
       return 'Password must contain at least one uppercase letter.';
@@ -48,8 +48,6 @@ export default function RegisterPage() {
       return;
     }
 
-    // Here you would normally call your backend API to create the user.
-    // For now, we just simulate success and redirect to login or items.
     setSuccess('Registration successful! Redirecting to login...');
     setTimeout(() => {
       router.push(`/login?redirect=${encodeURIComponent(redirectTo)}`);

@@ -6,7 +6,7 @@ const nodemailer = require('nodemailer');
 
 const app = express();
 
-// ======== Middleware ========
+
 app.use(
   cors({
     origin: process.env.FRONTEND_URL || 'http://localhost:3000',
@@ -16,7 +16,7 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-// ======== Nodemailer setup ========
+
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -42,7 +42,6 @@ async function sendBookingEmail(to, booking, service) {
   await transporter.sendMail(mailOptions);
 }
 
-// ======== Mock services data ========
 let services = [
   {
     id: 'baby-care',
@@ -50,7 +49,7 @@ let services = [
     description: 'Trusted babysitting at your home.',
     pricePerHour: 300,
     category: 'Baby Care',
-    image: 'https://placehold.co/600x400?text=Baby+Care',
+    image: 'https://i.ibb.co/x8L5QRfX/download-53.jpg',
   },
   {
     id: 'elderly-care',
@@ -58,7 +57,7 @@ let services = [
     description: 'Professional elderly care and companionship.',
     pricePerHour: 350,
     category: 'Elderly Care',
-    image: 'https://placehold.co/600x400?text=Elderly+Care',
+    image: 'https://i.ibb.co/v4FMcJyv/download-54.jpg',
   },
   {
     id: 'sick-care',
@@ -66,20 +65,18 @@ let services = [
     description: 'Special care for sick or recovering individuals.',
     pricePerHour: 400,
     category: 'Sick Care',
-    image: 'https://placehold.co/600x400?text=Sick+Care',
+    image: 'https://i.ibb.co/MHTDGJ8/download-55.jpg',
   },
 ];
 
 let bookings = [];
 
-// ======== Items API ========
 
-// GET list of items/services
 app.get('/api/items', (req, res) => {
   res.json(services);
 });
 
-// GET single item
+
 app.get('/api/items/:id', (req, res) => {
   const itemId = req.params.id;
   const item = services.find((s) => s.id === itemId);
@@ -89,7 +86,7 @@ app.get('/api/items/:id', (req, res) => {
   res.json(item);
 });
 
-// POST new item (for "Add Item" page)
+
 app.post('/api/items', (req, res) => {
   const { id, name, description, pricePerHour, category, image } = req.body;
   const newItem = { id, name, description, pricePerHour, category, image };
@@ -97,13 +94,11 @@ app.post('/api/items', (req, res) => {
   res.status(201).json(newItem);
 });
 
-// ======== Bookings API ========
 
-// POST booking
 app.post('/api/bookings', async (req, res) => {
   try {
     const {
-      userId, // treat this as the user's email
+      userId, 
       serviceId,
       durationHours,
       division,
@@ -127,10 +122,9 @@ app.post('/api/bookings', async (req, res) => {
 
     bookings.push(booking);
 
-    // find the service details to show in the email
     const service = services.find((s) => s.id === serviceId);
 
-    // Only try to send if SMTP is configured
+    
     if (service && process.env.SMTP_USER && process.env.SMTP_PASS) {
       try {
         await sendBookingEmail(userId, booking, service);
@@ -147,14 +141,13 @@ app.post('/api/bookings', async (req, res) => {
   }
 });
 
-// GET bookings for a user
 app.get('/api/bookings', (req, res) => {
   const { userId } = req.query;
   const userBookings = bookings.filter((b) => b.userId === userId);
   res.json(userBookings);
 });
 
-// ======== Start server ========
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log('Backend running on port', PORT);
