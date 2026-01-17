@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { mockLogin } from '@/lib/auth';
+import toast from 'react-hot-toast';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -17,22 +18,20 @@ export default function LoginPage() {
     e.preventDefault();
     const ok = mockLogin(email, password);
     if (!ok) {
-      setError('Invalid credentials. Use user@care.io / Care123');
+      const msg = 'Invalid credentials. Use user@care.io / Care123';
+      setError(msg);
+      toast.error(msg);
       return;
     }
+    toast.success('Logged in successfully!', {
+      style: { background: '#ecfccb', color: '#14532d' },
+    });
     router.push(redirectTo);
   };
 
   return (
     <div className="max-w-md mx-auto mt-10 px-4 py-6 border border-emerald-200 rounded-xl bg-white shadow-sm">
-      <h1 className="text-2xl font-bold mb-1 text-emerald-950">Login</h1>
-      <p className="text-sm text-emerald-700 mb-4">
-        Use the demo credentials&nbsp;
-        <span className="font-mono text-emerald-900">
-          user@care.io / Care123
-        </span>{' '}
-        to sign in.
-      </p>
+      <h1 className="text-2xl font-bold mb-3 text-emerald-950">Login</h1>
 
       {error && (
         <p className="mb-3 text-sm text-red-600 border border-red-200 bg-red-50 px-3 py-2 rounded">
@@ -46,28 +45,33 @@ export default function LoginPage() {
             Email
           </label>
           <input
+            type="email"
             className="border border-emerald-200 w-full px-3 py-2 rounded text-sm
                        focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            type="email"
+            placeholder="user@care.io"
             required
           />
         </div>
+
         <div>
           <label className="block text-xs font-medium text-emerald-800 mb-1">
             Password
           </label>
           <input
+            type="password"
             className="border border-emerald-200 w-full px-3 py-2 rounded text-sm
                        focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            type="password"
+            placeholder="Care123"
             required
           />
         </div>
+
         <button
+          type="submit"
           className="mt-2 bg-gradient-to-r from-lime-500 via-lime-600 to-emerald-700
                      text-emerald-950 font-semibold px-4 py-2.5 rounded-full w-full
                      hover:from-lime-600 hover:via-lime-700 hover:to-emerald-800

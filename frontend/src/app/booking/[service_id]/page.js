@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { api } from '@/lib/api';
 import { isAuthenticated, getUserFromCookie } from '@/lib/auth';
+import toast from 'react-hot-toast';
 
 export default function BookingPage() {
   const params = useParams();
@@ -21,6 +22,7 @@ export default function BookingPage() {
   const [totalCost, setTotalCost] = useState(0);
   const [message, setMessage] = useState('');
 
+  
   useEffect(() => {
     if (!isAuthenticated()) {
       router.replace(`/login?redirect=/booking/${params.service_id}`);
@@ -39,6 +41,7 @@ export default function BookingPage() {
         setTotalCost(data.pricePerHour * durationHours);
       } catch (err) {
         console.error('Error loading service', err);
+        setMessage('Failed to load service.');
       }
     }
     loadService();
@@ -75,9 +78,14 @@ export default function BookingPage() {
         totalCost,
       });
       setMessage('Booking created successfully with status Pending.');
+      toast.success('Booking created! Status: Pending', {
+        style: { background: '#ecfccb', color: '#14532d' }, 
+      });
+    
     } catch (err) {
       console.error(err);
       setMessage('Failed to create booking.');
+      toast.error('Failed to create booking. Please try again.');
     }
   };
 
@@ -105,6 +113,7 @@ export default function BookingPage() {
         onSubmit={handleSubmit}
         className="space-y-4 border border-emerald-200 p-6 rounded-xl bg-white shadow-sm"
       >
+      
         <div>
           <label className="block text-sm font-semibold text-emerald-800 mb-1">
             Duration (hours)
@@ -116,7 +125,8 @@ export default function BookingPage() {
             onChange={(e) =>
               setDurationHours(parseInt(e.target.value, 10) || 1)
             }
-            className="border border-emerald-200 px-3 py-2 rounded w-full text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500"
+            className="border border-emerald-200 px-3 py-2 rounded w-full text-sm
+                       focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500"
           />
         </div>
 
@@ -130,12 +140,14 @@ export default function BookingPage() {
                 value={location[field]}
                 onChange={(e) => handleChange(field, e.target.value)}
                 required
-                className="border border-emerald-200 px-3 py-2 rounded w-full text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500"
+                className="border border-emerald-200 px-3 py-2 rounded w-full text-sm
+                           focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500"
               />
             </div>
           ))}
         </div>
 
+        
         <div>
           <label className="block text-sm font-semibold text-emerald-800 mb-1">
             Address
@@ -145,14 +157,17 @@ export default function BookingPage() {
             onChange={(e) => handleChange('address', e.target.value)}
             required
             rows={3}
-            className="border border-emerald-200 px-3 py-2 rounded w-full text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500"
+            className="border border-emerald-200 px-3 py-2 rounded w-full text-sm
+                       focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500"
           />
         </div>
 
+       
         <div className="font-semibold text-emerald-900">
           Total Cost: ৳ {totalCost}
         </div>
 
+        
         <button
           type="submit"
           className="mt-2 inline-flex items-center justify-center w-full rounded-full
