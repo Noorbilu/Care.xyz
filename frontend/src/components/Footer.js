@@ -43,7 +43,6 @@ export default function Footer() {
             Quick Links
           </h3>
           <ul className="space-y-2 text-sm text-[#B7C6A3]">
-            <li><a href="/items" className="hover:text-[#9FD36A">Browse Services</a></li>
             <li><a href="/my-bookings" className="hover:text-[#9FD36A]">My Bookings</a></li>
             <li><a href="/login" className="hover:text-[#9FD36A]">Login / Register</a></li>
           </ul>
