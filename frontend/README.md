@@ -2,8 +2,6 @@ Care.IO – Baby Sitting & Elderly Care Service Platform
 
 Care.IO is a web application that helps users book reliable and trusted care services for babies, elderly people, and sick or special‑needs family members. Users can browse services, view details, calculate total cost, and create bookings with location details and duration.
 
-Backend API (items): http://localhost:5000/api/items
-
 
 Frontend: Next.js
 Backend: Express.js
@@ -11,7 +9,7 @@ Backend: Express.js
 Setup & Installation:
 
 Clone the repo:
-git clone https://github.com/yourusername/care-xyz.git
+git clone https://github.com/Noorbilu/Care.xyz.git
 cd care-xyz
 
 
