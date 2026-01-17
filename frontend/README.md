@@ -2,63 +2,62 @@ Care.IO – Baby Sitting & Elderly Care Service Platform
 
 Care.IO is a web application that helps users book reliable and trusted care services for babies, elderly people, and sick or special‑needs family members. Users can browse services, view details, calculate total cost, and create bookings with location details and duration.
 
-UI / UX & Styling
-
- Fully responsive (mobile / tablet / desktop)
- Theme: lime / dark‑lime / green using Tailwind CSS
- Custom Navbar & Footer with multiple navigation paths
- Custom 404 page with “Return Home” button
-
----
-
-Tech Stack
-
-Frontend
-   Next.js 16 (App Router)
-   React
-   Tailwind CSS
-   react-hot-toast
-   js-cookie
-Backend
-  Node.js
-  Express.js
-  Nodemailer
-Auth
-  Mock login with hardcoded credentials + cookies
+Backend API (items): http://localhost:5000/api/items
 
 
+Frontend: Next.js
+Backend: Express.js
 
-Project Structure:
-care-xyz/
-  backend/
-    index.js            
-    package.json
-    .env               
-  frontend/
-    src/
-      app/
-        page.js                 
-        items/
-          page.js              
-          id/page.js          
-          add/page.js           
-        service/
-          service_id/page.js  
-        booking/
-          service_id/page.js  
-        my-bookings/page.js     
-        login/page.js           
-        register/page.js        
-        about/page.js           
-        contact/page.js         
-        not-found.js           
-      components/
-        Navbar.js
-        Footer.js
-        ServiceCard.js
-      lib/
-        api.js                 
-        auth.js                 
-    .env.local                 
-    next.config.mjs
-    tailwind.config  
+Setup & Installation:
+
+Clone the repo:
+git clone https://github.com/yourusername/care-xyz.git
+cd care-xyz
+
+
+Backend setup:
+    cd backend
+    npm install
+    create .env with PORT, FRONTEND_URL, SMTP_USER, SMTP_PASS
+    node index.js
+
+
+Frontend setup:
+    cd frontend
+    npm install
+    create .env.local with NEXT_PUBLIC_BACKEND_URL
+    npm run dev
+
+Open browser at http://localhost:3000
+
+Main Routes:
+/ – Landing page
+/items – List all services
+/items/[id] – Service details
+/service/[service_id] – Alternate service detail route
+/booking/[service_id] – Book a service (login required)
+/my-bookings – My bookings (login required)
+/items/add – Add new service (login required)
+/login – Login
+/register – Register
+
+Features:
+Landing page – Hero section, about, services, testimonials, FAQ
+Services list & details – See all services, check description, price, and image
+Booking system – Select hours, enter location, calculate total cost, save booking, send email invoice
+My bookings – See all your bookings with status (Pending/Confirmed/etc.)
+Add service – Form to add new service with ID, name, price, category, image
+Authentication – Simple mock login with cookies, protected routes
+Email invoice – Sends booking info using Nodemailer (Gmail SMTP)
+
+How It Works:
+Users see a list of services and select one to book.
+Booking requires login, duration, and location.
+Total cost is calculated automatically.
+Admin-like user can add new services.
+Email invoice sent when booking is created.
+
+Tech Stack:
+Frontend: Next.js, React, Tailwind CSS, react-hot-toast, js-cookie
+Backend: Node.js, Express.js, Nodemailer
+Auth: Mock login with hardcoded credentials
