@@ -1,16 +1,14 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { mockLogin } from '@/lib/auth';
 import toast from 'react-hot-toast';
 
-export const dynamic = 'force-dynamic';  
-
 export default function LoginPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const redirectTo = searchParams.get('redirect') || '/items';
+  
+  const redirectTo = '/items';
 
   const [email, setEmail] = useState('user@care.io');
   const [password, setPassword] = useState('Care123');
