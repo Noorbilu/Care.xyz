@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { mockLogin } from '@/lib/auth';
 import toast from 'react-hot-toast';
 
+export const dynamic = 'force-dynamic';  
+
 export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
