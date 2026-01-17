@@ -1,12 +1,11 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function RegisterPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const redirectTo = searchParams.get('redirect') || '/items';
+  const redirectTo = '/items';
 
   const [nid, setNid] = useState('');
   const [name, setName] = useState('');
